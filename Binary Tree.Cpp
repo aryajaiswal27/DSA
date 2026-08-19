@@ -12,37 +12,32 @@ Node *root = NULL;
 class Tree
 {
     public:
-    void insert(Node *&temp,int value)
+    void insert(Node *&temp, int value)
+{
+    if (temp == NULL)
     {
-        if (value == -1)
-        {
-            temp = NULL;
-            return;
-        }
-
-         if(temp==NULL)
-             {
-             temp = new Node;
-             temp->data = value;
-             temp->left = NULL;
-             temp->right = NULL;
-             return;
-            }
-
-         else if(temp->left==NULL)
-              insert(temp->left,value);
-          else
-              insert(temp->right,value);
-
-
-
+        temp = new Node;
+        temp->data = value;
+        temp->left = NULL;
+        temp->right = NULL;
+        return;
     }
 
-
-void createTree(int value)
-{
-        insert(root,value);
+    if (temp->left == NULL)
+    {
+        insert(temp->left, value);
+    }
+    else if (temp->right == NULL)
+    {
+        insert(temp->right, value);
+    }
+    else
+    {
+        // Continue searching (example: go to left subtree first)
+        insert(temp->left, value);
+    }
 }
+
 
 
 // Inorder Traversal
@@ -92,57 +87,59 @@ int main()
     do
     {
         cout << "\n===== Binary Tree Menu =====";
-        cout << "\n1. Create Binary Tree";
-        cout << "\n2. Insert Node";
-        cout << "\n3. Inorder Traversal";
-        cout << "\n4. Preorder Traversal";
-        cout << "\n5. Postorder Traversal";
-        cout << "\n6. Exit";
+        cout << "\n1.  Insert Node Binary Tree";
+        cout << "\n2. Inorder Traversal";
+        cout << "\n3. Preorder Traversal";
+        cout << "\n4. Postorder Traversal";
+        cout << "\n4. Exit";
         cout << "\nEnter your choice: ";
         cin >> choice;
 
         switch (choice)
         {
         case 1:
-            cout << "Enter value (-1 for NULL): ";
-            cin >> value;
-            cout << "\nCreate Binary Tree\n";
-            t.createTree(value);
-            break;
-      case 2:
-          cout << "Enter value (-1 for NULL): ";
-          cin >> value;
-          t.insert(root,value);
+            cout<<"Enter value to be inserted";
+            cin>>value;
+                t.insert(root,value);
 
             break;
 
-        case 3:
-
+        case 2:
+ if(root == NULL)
+        cout << "Tree is empty!";
+    else
+    {
 
 
                 cout << "Inorder Traversal: ";
                 t.inorder(root);
                 cout << endl;
-
+    }
             break;
 
-        case 4:
-
-
+        case 3:
+             if(root == NULL)
+        cout << "Tree is empty!";
+    else
+    {
                 cout << "Preorder Traversal: ";
                 t.preorder(root);
                 cout << endl;
-
+    }
             break;
 
-        case 5:
+        case 4:
+ if(root == NULL)
+        cout << "Tree is empty!";
+    else
+    {
                 cout << "Postorder Traversal: ";
                 t.postorder(root);
                 cout << endl;
-
+    }
             break;
 
-        case 6:
+        case 5:
             cout << "Program Exited.";
             break;
 
@@ -150,8 +147,7 @@ int main()
             cout << "Invalid Choice!";
         }
 
-    } while (choice != 6);
+    } while (choice != 5);
 
     return 0;
 }
-BT implementation
